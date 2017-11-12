@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :team do
     slug { FFaker::Lorem.word }
     user

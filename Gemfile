@@ -42,7 +42,7 @@ gem 'material_icons'
 gem 'redis', '~> 3.0.0'
 
 group :test do
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
   gem 'ffaker'
 end
 
