@@ -13,7 +13,7 @@ RSpec.describe ChannelsController, type: :controller do
 
   describe 'POST #create' do
     # Sem isto não renderiza as views
-    render views
+    render_views
 
     context 'user is team member' do
       before(:each) do
@@ -45,7 +45,7 @@ RSpec.describe ChannelsController, type: :controller do
     context 'user is not team member' do
       before(:each) do
         @team = create(:team)
-        @channel_attributes = attributes_for(:channel)
+        @channel_attributes = attributes_for(:channel, team: @team)
         post :create, params: { channel: @channel_attributes.merge(team_id: @team.id) }
       end
 
@@ -130,7 +130,7 @@ RSpec.describe ChannelsController, type: :controller do
 
           delete :destroy, params: { id: channel.id }
 
-          expect(response).to have_http_status(:forbdden)
+          expect(response).to have_http_status(:forbidden)
         end
       end
     end
@@ -139,7 +139,7 @@ RSpec.describe ChannelsController, type: :controller do
       it 'returns http forbidden' do
         channel = create(:channel)
         delete :destroy, params: { id: channel.id }
-        expect(response).to have_http_status(:forbdden)
+        expect(response).to have_http_status(:forbidden)
       end
     end
   end

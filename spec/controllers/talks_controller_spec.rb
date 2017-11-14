@@ -4,11 +4,11 @@ RSpec.describe TalksController, type: :controller do
   include Devise::Test::ControllerHelpers
 
   before(:each) do
-    request.env['HTTP_ACCEPT'] = 'application_json'
+    request.env['HTTP_ACCEPT'] = 'application/json'
 
     @request.env['devise.mapping'] = Devise.mappings[:user]
     @current_user = create(:user)
-    sing_in @current_user
+    sign_in @current_user
   end
 
   describe 'GET #show' do
@@ -51,7 +51,7 @@ RSpec.describe TalksController, type: :controller do
 
         expect(response_hash['messages'][0]['body']).to eq(@message1.body)
         expect(response_hash['messages'][0]['user_id']).to eq(@current_user.id)
-        expect(response_hash['messages'][1]['body']).to eq(@messages2.body)
+        expect(response_hash['messages'][1]['body']).to eq(@message2.body)
         expect(response_hash['messages'][1]['user_id']).to eq(@guest_user.id)
       end
     end
@@ -60,7 +60,7 @@ RSpec.describe TalksController, type: :controller do
       before(:each) do
         @team = create(:team)
         @guest_user = create(:user)
-        @team.users << guest_user
+        @team.users << @guest_user
         @talk = create(:talk, user_two: @guest_user, team: @team)
 
         get :show, params: { team_id: @team.id, id: @guest_user.id }

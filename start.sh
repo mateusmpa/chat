@@ -1,4 +1,4 @@
 # Instala as Gems
-bundle_check || bundle_install
+bundle check || bundle install
 # Roda nosso servidor
 bundle exec puma -C config/puma.rb

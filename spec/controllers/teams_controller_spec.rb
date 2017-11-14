@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe TeamsController, type: :controller do
-  include Decise::Test::ControllerHelpers
+  include Devise::Test::ControllerHelpers
 
   before(:each) do
     @request.env['devise.mapping'] = Devise.mappings[:user]
     @current_user = create(:user)
-    sing_in @current_user
+    sign_in @current_user
   end
 
   describe 'GET #index' do
@@ -101,7 +101,7 @@ RSpec.describe TeamsController, type: :controller do
       it 'returns http forbidden' do
         team = create(:team)
         team.users << @current_user
-        delete :destroy, prams: { id: team.id }
+        delete :destroy, params: { id: team.id }
 
         expect(response).to have_http_status(:forbidden)
       end
