@@ -8,7 +8,7 @@
             <p>Are you sure you want to delete the channel?</p>
           </div>
           <div class="input-field col s12">
-            <%= hidden_field(:channel, :team_id, value: @team.id) %>
+            <input type="hidden" name="channel_remove_id" id="channel_remove_id">
             <%= submit_tag('Remove', class: 'btn red right') %>
           </div>
         </div>

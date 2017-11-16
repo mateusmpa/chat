@@ -7,8 +7,8 @@
             <h4>Remove User</h4>
             <p>Are you sure you want to remove the user?</p>
           </div>
-          <div class="input-field col s12>">
-            <%= hidden_field(:team_user, :team_id, value: @team.id) %>
+          <div class="input-field col s12">
+            <input type="hidden" name="user_remove_id" id="user_remove_id">
             <%= submit_tag('Remove', class: 'btn red right') %>
           </div>
         </div>
